@@ -39,7 +39,7 @@ Usage
 =====
 
 If you just want to convert a file from a mainframe
-using a copybook layout use the command line tool :ref:`cob_to_csv`
+using a copybook layout use the command line tool :code:`cob_to_csv`
 
 Roadmap
 =======
@@ -49,13 +49,13 @@ Roadmap
 Limitations
 ===========
 
-No support for `OCCURS DEPENDING ON` clause in copybook.
+No support for :code:`OCCURS DEPENDING ON` clause in copybook.
 
 Acknowledgements
 ================
 
 The original code was taken from AWS samples repo called 
-[unlock mainframe data files on aws](https://github.com/aws-samples/unlock-mainframe-data-files-on-aws).
+`unlock mainframe data files on aws <https://github.com/aws-samples/unlock-mainframe-data-files-on-aws>`_.
 
 This project repackages this functionality as a python package
 and provide pythonic interfaces for programmatic use.
