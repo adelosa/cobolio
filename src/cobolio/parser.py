@@ -85,6 +85,8 @@ Read a mainframe record with a COBOL copybook layout returning a dict::
 import codecs
 import logging
 
+from typing import List
+
 import cobolio.config as cfg
 from cobolio.CopybookTokenizer import CopybookTokenizer
 from cobolio.CopybookParser import CopybookParser
@@ -92,7 +94,7 @@ from cobolio.CopybookParser import CopybookParser
 LOGGER = logging.getLogger(__name__)
 
 
-def copybook_to_layout(copybook: str) -> (int, list[tuple]):
+def copybook_to_layout(copybook: str) -> (int, List[tuple]):
     """
     Get layout list and record length for a COBOL copybook
 
