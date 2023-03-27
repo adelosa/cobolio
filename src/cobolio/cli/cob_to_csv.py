@@ -1,7 +1,8 @@
 import argparse
+import csv
 import logging
 
-from cobolio import cobdata_to_csv
+import cobolio  # import cobdata_to_csv
 from cobolio.cli import print_banner, add_version
 
 
@@ -11,13 +12,28 @@ def cob_to_csv(input_copybook, input_datafile, output_datafile, **kwargs):
     with open(input_copybook, 'r') as copybook_file:
         copybook_data = copybook_file.read()
 
-    # Convert copybook to layout format, get record length
-    rec_len, layout = cobdata_to_csv.copybook_to_layout(copybook_data)
+    # Convert copybook to layout format, record length
+    rec_length, layout = cobolio.copybook_to_layout(copybook_data)
 
+    # Open input data file and output CSV file
+    input_encoding = kwargs.get('input_encoding')
     output_encoding = kwargs.get('out_encoding')
-    with open(input_datafile, 'rb') as inputFile, open(
+    with open(input_datafile, 'rb') as input_file, open(
             output_datafile, 'w', newline='', encoding=output_encoding) as output_file:
-        cobdata_to_csv.convert_cobol_data_to_csv(inputFile, rec_len, layout, output_file, **kwargs)
+
+        field_names = [field_spec[0] for field_spec in layout]
+        out_file = csv.DictWriter(output_file, field_names, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
+        out_file.writeheader()
+
+        for rec_data in yield_records(input_file, rec_length):
+            out_file.writerow(cobolio.loads(rec_data, layout, input_encoding))
+
+
+def yield_records(file, rec_size):
+    rec_bytes = file.read(rec_size)
+    while rec_bytes:
+        yield rec_bytes
+        rec_bytes = file.read(rec_size)
 
 
 def cli_entry():
