@@ -1,8 +1,7 @@
 name: Deploy docs to Pages
 on:
   push:
-    tags:
-      - 'v**'
+    branches: [main]
   workflow_dispatch:
 
 ## Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
