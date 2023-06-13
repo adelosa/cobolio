@@ -38,12 +38,10 @@ Install using pip::
 Usage
 =====
 
-If you just want to convert a file from a mainframe
-using a copybook layout use the command line tool :code:`cob_to_csv`
+Documentation is hosted at `GitHub <https://adelosa.github.io/cobolio>`_.
 
 Roadmap
 =======
-* GitHub action to publish package to Pypi
 * dumps function -- reverse processing (dict -> bytes)
 
 Limitations

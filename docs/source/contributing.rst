@@ -47,6 +47,8 @@ will help people who need to work with mainframe files and records.
 Development commands
 ====================
 
+..  _contributing_install:
+
 install
 -------
 
